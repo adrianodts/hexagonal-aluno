@@ -3,7 +3,7 @@ package application_test
 import (
 	"testing"
 
-	"github.com/codeedu/go-hexagonal/application"
+	"github.com/adrianodts/hexagonal-aluno/application"
 
 	// "github.com/stretchr/testify/assert"
 	uuid "github.com/satori/go.uuid"
