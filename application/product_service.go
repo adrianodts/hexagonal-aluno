@@ -8,6 +8,14 @@ func NewProductService(persistence ProductPersistenceInterface) *ProductService 
 	return &ProductService{Persistence: persistence}
 }
 
+// func (s *ProductService) GetAll() (ProductInterface, error) {
+// 	product, err := s.Persistence.GetAll()
+// 	if err != nil {
+// 		return nil, err
+// 	}
+// 	return product, nil
+// }
+
 func (s *ProductService) Get(id string) (ProductInterface, error) {
 	product, err := s.Persistence.Get(id)
 	if err != nil {

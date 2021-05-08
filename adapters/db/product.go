@@ -16,6 +16,29 @@ func NewProductDb(db *sql.DB) *ProductDb {
 	return &ProductDb{db: db}
 }
 
+// func (p *ProductDb) GetAll() (application.ProductInterface, error) {
+// 	var product []application.Product
+// 	rows, err := db.Query(`select id, name, price, status from products`)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	defer rows.Close()
+// 	var i = 0
+// 	for rows.Next() {
+// 		err = rows.Scan(&product.Id, &product.Name, &product.Price, &product.Status)
+// 		if err != nil {
+// 			panic(err)
+// 		}
+// 		product[0] = err
+// 		i++
+// 	}
+// 	err = rows.Err()
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	return &product, nil
+// }
+
 func (p *ProductDb) Get(id string) (application.ProductInterface, error) {
 	var product application.Product
 	stmt, err := p.db.Prepare("select id, name, price, status from products where id=?")

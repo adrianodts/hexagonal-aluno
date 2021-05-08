@@ -12,6 +12,8 @@ import (
 )
 
 func MakeProductHandlers(r *mux.Router, n *negroni.Negroni, service application.ProductServiceInterface) {
+	// r.Handle("/product", n.With(
+	// 	negroni.Wrap(getAllProduct(service)),
 	r.Handle("/product/{id}", n.With(
 		negroni.Wrap(getProduct(service)),
 	)).Methods("GET", "OPTIONS")
@@ -25,6 +27,23 @@ func MakeProductHandlers(r *mux.Router, n *negroni.Negroni, service application.
 		negroni.Wrap(disableProduct(service)),
 	)).Methods("GET", "OPTIONS")
 }
+
+// func getAllProduct(service application.ProductServiceInterface) http.Handler {
+// 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+// 		w.Header().Set("Content-Type", "application/json")
+// 		vars := mux.Vars(r)
+// 		product, err := service.GetAll()
+// 		if err != nil {
+// 			w.WriteHeader(http.StatusNotFound)
+// 			return
+// 		}
+// 		err = json.NewEncoder(w).Encode(product)
+// 		if err != nil {
+// 			w.WriteHeader(http.StatusInternalServerError)
+// 			return
+// 		}
+// 	})
+// }
 
 func getProduct(service application.ProductServiceInterface) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
